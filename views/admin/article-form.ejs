@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+
+<h1 class="page-title"><%= title %></h1>
+<%- include('../partials/admin-tabs', { active: 'articles' }) %>
+
+<div class="card" style="max-width: 700px;">
+  <% if (errors.length > 0) { %>
+    <div class="errors">
+      <ul style="margin: 0; padding-left: 18px;">
+        <% errors.forEach(e => { %><li><%= e %></li><% }) %>
+      </ul>
+    </div>
+  <% } %>
+  <form method="POST" action="<%= article.id ? '/admin/articles/' + article.id + '/edit' : '/admin/articles/new' %>">
+    <div class="field">
+      <label>標題</label>
+      <input type="text" name="title" value="<%= article.title || '' %>" required />
+    </div>
+    <div class="field">
+      <label>分類</label>
+      <input type="text" name="category" value="<%= article.category || '未分類' %>" />
+    </div>
+    <div class="field">
+      <label>摘要</label>
+      <input type="text" name="summary" value="<%= article.summary || '' %>" />
+    </div>
+    <div class="field">
+      <label>內容</label>
+      <textarea name="content" rows="10" required><%= article.content || '' %></textarea>
+    </div>
+    <div class="field">
+      <label>狀態</label>
+      <select name="status">
+        <option value="published" <%= article.status === 'published' || !article.status ? 'selected' : '' %>>發布</option>
+        <option value="draft" <%= article.status === 'draft' ? 'selected' : '' %>>草稿</option>
+      </select>
+    </div>
+    <button type="submit" class="btn">儲存</button>
+    <a class="btn btn-secondary" href="/admin/articles">取消</a>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

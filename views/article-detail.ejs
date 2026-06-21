@@ -1,0 +1,50 @@
+<%- include('partials/header') %>
+
+<span class="badge badge-user"><%= article.category %></span>
+<h1 class="page-title"><%= article.title %></h1>
+<p style="color: var(--muted); font-size: 0.85rem;">發布於 <%= article.created_at %></p>
+
+<div class="card">
+  <p style="line-height: 1.8; white-space: pre-line;"><%= article.content %></p>
+</div>
+
+<h2 class="page-title">留言板</h2>
+
+<% if (typeof success !== 'undefined' && success) { %>
+  <div class="success-msg">留言已送出，待審核後將會顯示。</div>
+<% } %>
+<% if (errors && errors.length > 0) { %>
+  <div class="errors">
+    <ul style="margin: 0; padding-left: 18px;">
+      <% errors.forEach(e => { %><li><%= e %></li><% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<div class="card">
+  <form method="POST" action="/articles/<%= article.id %>/comments">
+    <% if (!currentUser) { %>
+      <div class="field">
+        <label>您的稱呼</label>
+        <input type="text" name="guest_name" required />
+      </div>
+    <% } %>
+    <div class="field">
+      <label>留言內容</label>
+      <textarea name="content" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn">送出留言</button>
+  </form>
+</div>
+
+<div class="card">
+  <% comments.forEach(c => { %>
+    <div class="comment">
+      <div class="comment-meta"><%= c.username || c.guest_name || '訪客' %> · <%= c.created_at %></div>
+      <div><%= c.content %></div>
+    </div>
+  <% }) %>
+  <% if (comments.length === 0) { %><p style="color: var(--muted);">目前還沒有留言，成為第一個留言的人吧！</p><% } %>
+</div>
+
+<%- include('partials/footer') %>

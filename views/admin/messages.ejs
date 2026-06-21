@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<h1 class="page-title">聯絡訊息</h1>
+<%- include('../partials/admin-tabs', { active: 'messages' }) %>
+
+<div class="card">
+  <% messages.forEach(m => { %>
+    <div class="comment">
+      <div class="comment-meta"><%= m.name %> (<%= m.email %>) · 主旨：<%= m.subject || '無' %> · <%= m.created_at %></div>
+      <div><%= m.message %></div>
+    </div>
+  <% }) %>
+  <% if (messages.length === 0) { %><p style="color: var(--muted);">尚無訊息。</p><% } %>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+
+<h1 class="page-title">文章管理</h1>
+<%- include('../partials/admin-tabs', { active: 'articles' }) %>
+
+<div class="filter-bar">
+  <form method="GET" action="/admin/articles" style="display: flex; gap: 10px;">
+    <input type="text" name="q" placeholder="搜尋標題..." value="<%= search %>" />
+    <button type="submit" class="btn btn-sm">搜尋</button>
+  </form>
+  <a class="btn btn-sm" href="/admin/articles/new">+ 新增文章</a>
+</div>
+
+<div class="table-wrap card">
+  <table>
+    <thead>
+      <tr><th>標題</th><th>分類</th><th>狀態</th><th>建立時間</th><th>操作</th></tr>
+    </thead>
+    <tbody>
+      <% articles.forEach(a => { %>
+        <tr>
+          <td><%= a.title %></td>
+          <td><%= a.category %></td>
+          <td><span class="badge badge-<%= a.status %>"><%= a.status %></span></td>
+          <td><%= a.created_at %></td>
+          <td>
+            <a class="btn btn-sm btn-secondary" href="/admin/articles/<%= a.id %>/edit">編輯</a>
+            <form action="/admin/articles/<%= a.id %>/delete" method="POST" class="inline-form" onsubmit="return confirm('確定要刪除這篇文章嗎？')">
+              <button type="submit" class="btn btn-sm btn-danger">刪除</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+      <% if (articles.length === 0) { %><tr><td colspan="5" style="color: var(--muted);">尚無文章。</td></tr><% } %>
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  <% for (let i = 1; i <= totalPages; i++) { %>
+    <a class="<%= i === page ? 'active' : '' %>" href="/admin/articles?page=<%= i %>&q=<%= encodeURIComponent(search) %>"><%= i %></a>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>

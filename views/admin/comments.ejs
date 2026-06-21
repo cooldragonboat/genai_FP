@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+
+<h1 class="page-title">留言審核</h1>
+<%- include('../partials/admin-tabs', { active: 'comments' }) %>
+
+<div class="filter-bar">
+  <a class="btn btn-sm <%= filter === 'pending' ? '' : 'btn-secondary' %>" href="/admin/comments?status=pending">待審核</a>
+  <a class="btn btn-sm <%= filter === 'approved' ? '' : 'btn-secondary' %>" href="/admin/comments?status=approved">已核准</a>
+  <a class="btn btn-sm <%= filter === 'rejected' ? '' : 'btn-secondary' %>" href="/admin/comments?status=rejected">已退回</a>
+</div>
+
+<div class="card">
+  <% comments.forEach(c => { %>
+    <div class="comment">
+      <div class="comment-meta">
+        <%= c.username || c.guest_name || '訪客' %> · 文章：<%= c.article_title %> · <%= c.created_at %>
+        <span class="badge badge-<%= c.status %>"><%= c.status %></span>
+      </div>
+      <div><%= c.content %></div>
+      <div style="margin-top: 8px; display: flex; gap: 8px;">
+        <% if (c.status !== 'approved') { %>
+          <form action="/admin/comments/<%= c.id %>/approve" method="POST">
+            <button type="submit" class="btn btn-sm">核准</button>
+          </form>
+        <% } %>
+        <% if (c.status !== 'rejected') { %>
+          <form action="/admin/comments/<%= c.id %>/reject" method="POST">
+            <button type="submit" class="btn btn-sm btn-secondary">退回</button>
+          </form>
+        <% } %>
+        <form action="/admin/comments/<%= c.id %>/delete" method="POST" onsubmit="return confirm('確定要刪除嗎？')">
+          <button type="submit" class="btn btn-sm btn-danger">刪除</button>
+        </form>
+      </div>
+    </div>
+  <% }) %>
+  <% if (comments.length === 0) { %><p style="color: var(--muted);">沒有符合條件的留言。</p><% } %>
+</div>
+
+<%- include('../partials/footer') %>

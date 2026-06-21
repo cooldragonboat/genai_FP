@@ -1,0 +1,34 @@
+<%- include('partials/header') %>
+
+<section class="hero-section">
+  <h1>歡迎來到我的期末專題</h1>
+  <p>結合會員系統、文章管理、留言互動與後台統計的全端網站練習。</p>
+  <div style="margin-top: 20px;">
+    <a class="btn" href="/articles">瀏覽文章</a>
+    <a class="btn btn-secondary" href="/portfolio">查看作品集</a>
+  </div>
+</section>
+
+<h2 class="page-title">最新文章</h2>
+<div class="grid grid-3">
+  <% latestArticles.forEach(a => { %>
+    <div class="card">
+      <h3><a href="/articles/<%= a.id %>" style="color: var(--neon-cyan); text-decoration: none;"><%= a.title %></a></h3>
+      <p style="color: var(--muted);"><%= a.summary %></p>
+    </div>
+  <% }) %>
+  <% if (latestArticles.length === 0) { %><p style="color: var(--muted);">尚無文章。</p><% } %>
+</div>
+
+<h2 class="page-title">精選作品</h2>
+<div class="grid grid-3">
+  <% portfolioPreview.forEach(p => { %>
+    <div class="card">
+      <h3><%= p.title %></h3>
+      <p style="color: var(--muted);"><%= p.description %></p>
+    </div>
+  <% }) %>
+  <% if (portfolioPreview.length === 0) { %><p style="color: var(--muted);">尚無作品。</p><% } %>
+</div>
+
+<%- include('partials/footer') %>

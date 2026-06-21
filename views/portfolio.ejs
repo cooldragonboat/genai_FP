@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+
+<h1 class="page-title">作品集</h1>
+
+<form class="filter-bar" method="GET" action="/portfolio">
+  <input type="text" name="q" placeholder="搜尋作品..." value="<%= search %>" />
+  <select name="category" onchange="this.form.submit()">
+    <option value="">所有分類</option>
+    <% categories.forEach(c => { %>
+      <option value="<%= c %>" <%= c === category ? 'selected' : '' %>><%= c %></option>
+    <% }) %>
+  </select>
+  <button type="submit" class="btn btn-sm">搜尋</button>
+</form>
+
+<div class="grid grid-3">
+  <% items.forEach(p => { %>
+    <div class="card">
+      <h3><%= p.title %></h3>
+      <span class="badge badge-user"><%= p.category %></span>
+      <p style="color: var(--muted); margin-top: 10px;"><%= p.description %></p>
+      <% if (p.link_url) { %><a class="btn btn-sm" href="<%= p.link_url %>" target="_blank">查看連結</a><% } %>
+    </div>
+  <% }) %>
+  <% if (items.length === 0) { %><p style="color: var(--muted);">尚無符合條件的作品。</p><% } %>
+</div>
+
+<%- include('partials/footer') %>

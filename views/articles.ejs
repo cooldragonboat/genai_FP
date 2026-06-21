@@ -1,0 +1,34 @@
+<%- include('partials/header') %>
+
+<h1 class="page-title">文章列表</h1>
+
+<form class="filter-bar" method="GET" action="/articles">
+  <input type="text" name="q" placeholder="搜尋文章..." value="<%= search %>" />
+  <select name="category" onchange="this.form.submit()">
+    <option value="">所有分類</option>
+    <% categories.forEach(c => { %>
+      <option value="<%= c %>" <%= c === category ? 'selected' : '' %>><%= c %></option>
+    <% }) %>
+  </select>
+  <button type="submit" class="btn btn-sm">搜尋</button>
+</form>
+
+<div class="grid grid-2">
+  <% articles.forEach(a => { %>
+    <div class="card">
+      <span class="badge badge-user"><%= a.category %></span>
+      <h3><a href="/articles/<%= a.id %>" style="color: var(--neon-cyan); text-decoration: none;"><%= a.title %></a></h3>
+      <p style="color: var(--muted);"><%= a.summary %></p>
+      <p style="color: var(--muted); font-size: 0.8rem;"><%= a.created_at %></p>
+    </div>
+  <% }) %>
+  <% if (articles.length === 0) { %><p style="color: var(--muted);">尚無符合條件的文章。</p><% } %>
+</div>
+
+<div class="pagination">
+  <% for (let i = 1; i <= totalPages; i++) { %>
+    <a class="<%= i === page ? 'active' : '' %>" href="/articles?page=<%= i %>&q=<%= encodeURIComponent(search) %>&category=<%= encodeURIComponent(category) %>"><%= i %></a>
+  <% } %>
+</div>
+
+<%- include('partials/footer') %>

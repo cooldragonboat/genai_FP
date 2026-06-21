@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+
+<h1 class="page-title">後台管理</h1>
+<%- include('../partials/admin-tabs', { active: 'dashboard' }) %>
+
+<div class="stat-grid">
+  <div class="card stat-card"><div class="num"><%= stats.userCount %></div><div class="label">會員人數</div></div>
+  <div class="card stat-card"><div class="num"><%= stats.articleCount %></div><div class="label">文章總數</div></div>
+  <div class="card stat-card"><div class="num"><%= stats.pendingComments %></div><div class="label">待審核留言</div></div>
+  <div class="card stat-card"><div class="num"><%= stats.contactCount %></div><div class="label">聯絡訊息</div></div>
+</div>
+
+<div class="grid grid-2">
+  <div class="card">
+    <h3>最新留言</h3>
+    <% recentComments.forEach(c => { %>
+      <div class="comment">
+        <div class="comment-meta"><%= c.article_title %> · <span class="badge badge-<%= c.status %>"><%= c.status %></span></div>
+        <div><%= c.content %></div>
+      </div>
+    <% }) %>
+    <% if (recentComments.length === 0) { %><p style="color: var(--muted);">尚無留言。</p><% } %>
+  </div>
+  <div class="card">
+    <h3>最新聯絡訊息</h3>
+    <% recentMessages.forEach(m => { %>
+      <div class="comment">
+        <div class="comment-meta"><%= m.name %> (<%= m.email %>)</div>
+        <div><%= m.message %></div>
+      </div>
+    <% }) %>
+    <% if (recentMessages.length === 0) { %><p style="color: var(--muted);">尚無訊息。</p><% } %>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

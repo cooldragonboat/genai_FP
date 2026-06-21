@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+
+<h1 class="page-title">作品集管理</h1>
+<%- include('../partials/admin-tabs', { active: 'portfolio' }) %>
+
+<div class="card" style="max-width: 600px;">
+  <h3>新增作品</h3>
+  <form method="POST" action="/admin/portfolio/new">
+    <div class="field"><label>標題</label><input type="text" name="title" required /></div>
+    <div class="field"><label>分類</label><input type="text" name="category" value="其他" /></div>
+    <div class="field"><label>說明</label><textarea name="description" rows="3"></textarea></div>
+    <div class="field"><label>圖片網址</label><input type="text" name="image_url" /></div>
+    <div class="field"><label>連結網址</label><input type="text" name="link_url" /></div>
+    <button type="submit" class="btn">新增</button>
+  </form>
+</div>
+
+<div class="table-wrap card">
+  <table>
+    <thead><tr><th>標題</th><th>分類</th><th>建立時間</th><th>操作</th></tr></thead>
+    <tbody>
+      <% items.forEach(p => { %>
+        <tr>
+          <td><%= p.title %></td>
+          <td><%= p.category %></td>
+          <td><%= p.created_at %></td>
+          <td>
+            <form action="/admin/portfolio/<%= p.id %>/delete" method="POST" onsubmit="return confirm('確定要刪除嗎？')">
+              <button type="submit" class="btn btn-sm btn-danger">刪除</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+      <% if (items.length === 0) { %><tr><td colspan="4" style="color: var(--muted);">尚無作品。</td></tr><% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/footer') %>
