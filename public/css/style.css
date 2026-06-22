@@ -10,7 +10,7 @@
   --muted: #a3acb8;
   --accent: #2dfcdc;
   --danger: #ff5c5c;
-  /* 全站統一配色（不再每頁切換） */
+  /* 由 main.js 每次換頁時隨機更新，整頁元件共用同一個值 */
   --dynamic: #5ad1ff;
   --dynamic-glow: rgba(90, 209, 255, 0.55);
 }
@@ -213,15 +213,15 @@ h1 { font-size: 2rem; }
 
 a.btn, button.btn {
   display: inline-block;
-  background: linear-gradient(135deg, #7c5cff, #2dd4ff);
+  background: linear-gradient(135deg, var(--dynamic), #2dd4ff);
   color: #0c0826;
+  transition: background 0.4s ease, transform 0.15s, box-shadow 0.15s;
   border: none;
   padding: 10px 20px;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-  transition: transform 0.15s, box-shadow 0.15s;
 }
 a.btn:hover, button.btn:hover {
   transform: translateY(-2px);
