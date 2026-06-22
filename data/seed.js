@@ -11,8 +11,8 @@ function seed() {
     ).run('admin', 'admin@example.com', adminHash, 'admin');
     db.prepare(
       'INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)'
-    ).run('demo', 'demo@example.com', userHash, 'user');
-    console.log('已建立帳號: admin/admin1234 (管理員), demo/user1234 (一般使用者)');
+    ).run('小火', 'demo@example.com', userHash, 'user');
+    console.log('已建立帳號: admin/admin1234 (管理員), 小火/user1234 (一般使用者)');
   }
 
   const articleCount = db.prepare('SELECT COUNT(*) AS c FROM articles').get().c;

@@ -1,8 +1,9 @@
 <%- include('partials/header') %>
 
+<div class="auth-page">
 <h1 class="page-title">登入</h1>
 
-<div class="card" style="max-width: 420px;">
+<div class="card auth-card" style="max-width: 420px;">
   <% if (errors.length > 0) { %>
     <div class="errors">
       <ul style="margin: 0; padding-left: 18px;">
@@ -23,7 +24,8 @@
     <button type="submit" class="btn">登入</button>
   </form>
   <p style="color: var(--muted); margin-top: 16px;">還沒有帳號？<a href="/register" style="color: var(--neon-cyan);">立即註冊</a></p>
-  <p style="color: var(--muted); font-size: 0.8rem;">測試帳號：admin / admin1234（管理員）、demo / user1234（一般使用者）</p>
+  <p style="color: var(--muted); font-size: 0.8rem;">測試帳號：admin / admin1234（管理員）、小火 / user1234（一般使用者）</p>
+</div>
 </div>
 
 <%- include('partials/footer') %>

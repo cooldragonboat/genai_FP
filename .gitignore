@@ -3,3 +3,5 @@ data/app.db
 data/sessions.sqlite
 .env
 *.log
+data/app.db-shm
+data/app.db-wal

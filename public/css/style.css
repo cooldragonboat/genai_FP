@@ -1,23 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Orbitron:wght@600;800&display=swap');
+
 :root {
   --neon-cyan: #2dfcdc;
   --neon-orange: #ff7a30;
-  --bg-dark: #0a0c10;
-  --panel: rgba(15, 18, 25, 0.78);
+  --bg-dark: #05070b;
+  --panel: rgba(13, 16, 24, 0.72);
+  --panel-strong: rgba(13, 16, 24, 0.9);
   --text: #eef2f5;
   --muted: #a3acb8;
   --accent: #2dfcdc;
   --danger: #ff5c5c;
+  /* 由 main.js 每次換頁時動態更新 */
+  --dynamic: #2dfcdc;
+  --dynamic-glow: rgba(45, 252, 220, 0.55);
 }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 
 body {
-  font-family: 'Segoe UI', 'Noto Sans TC', sans-serif;
+  font-family: 'Noto Sans TC', 'Segoe UI', sans-serif;
   color: var(--text);
   background-color: var(--bg-dark);
   min-height: 100vh;
   position: relative;
+  letter-spacing: 0.2px;
+}
+
+/* 動態變色：每切換一個頁面就換一種顏色 */
+.brand,
+.page-title,
+.hero-section h1,
+.stat-card .num,
+h2, h3 {
+  color: var(--dynamic) !important;
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+.brand { text-shadow: 0 0 14px var(--dynamic-glow) !important; }
+.page-title, .hero-section h1 { text-shadow: 0 0 18px var(--dynamic-glow) !important; }
+.main-nav a:hover { color: var(--dynamic); }
+a { color: var(--dynamic); }
+
+/* 漂亮的捲軸 */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #05070b; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--dynamic), #1a9b8a);
+  border-radius: 10px;
 }
 
 /* ---------- 炫彩背景效果 ---------- */
@@ -25,14 +54,22 @@ body {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background: url('/images/hero.jpg') center top / cover no-repeat;
-  filter: saturate(1.15) brightness(0.55);
+  background: url('/images/hero.jpg') center center / cover no-repeat;
+  filter: saturate(1.25) contrast(1.05) brightness(0.7);
+  animation: heroZoom 26s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
 }
 
 .bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 12, 16, 0.55) 0%, rgba(10, 12, 16, 0.85) 55%, rgba(10, 12, 16, 0.98) 100%);
+  background:
+    radial-gradient(circle at 50% 40%, rgba(5, 7, 11, 0.15) 0%, rgba(5, 7, 11, 0.55) 60%, rgba(5, 7, 11, 0.92) 100%),
+    linear-gradient(180deg, rgba(5, 7, 11, 0.35) 0%, rgba(5, 7, 11, 0.7) 60%, rgba(5, 7, 11, 0.96) 100%);
 }
 
 .bg-glow {
@@ -72,8 +109,10 @@ body {
 }
 
 .brand {
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-family: 'Orbitron', 'Noto Sans TC', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
   color: var(--neon-cyan);
   text-decoration: none;
   text-shadow: 0 0 12px rgba(45, 252, 220, 0.6);
@@ -125,12 +164,39 @@ body {
 /* ---------- 通用元件 ---------- */
 .card {
   background: var(--panel);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 26px;
+  margin-bottom: 22px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px) saturate(1.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--dynamic-glow);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), 0 0 24px var(--dynamic-glow);
+}
+
+/* 登入 / 註冊 / 聯絡資訊 置中 */
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 60vh;
+  padding: 20px 0;
+}
+.auth-page .page-title { text-align: center; }
+.auth-card {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+.auth-card .btn { width: 100%; text-align: center; margin-top: 4px; }
+.auth-card > p { text-align: center; }
 
 .grid { display: grid; gap: 20px; }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
@@ -158,8 +224,8 @@ a.btn, button.btn {
   transition: transform 0.15s, box-shadow 0.15s;
 }
 a.btn:hover, button.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(45, 252, 220, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px var(--dynamic-glow);
 }
 .btn-danger { background: linear-gradient(135deg, #ff7a7a, var(--danger)); color: #2a0606; }
 .btn-secondary { background: rgba(255,255,255,0.1); color: var(--text); }
@@ -178,8 +244,8 @@ input, textarea, select {
 }
 input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: var(--neon-cyan);
-  box-shadow: 0 0 0 2px rgba(45, 252, 220, 0.25);
+  border-color: var(--dynamic);
+  box-shadow: 0 0 0 3px var(--dynamic-glow);
 }
 
 .errors {
@@ -274,13 +340,21 @@ th { color: var(--muted); font-weight: 600; }
 
 .hero-section {
   text-align: center;
-  padding: 60px 20px;
+  padding: 80px 20px 70px;
 }
 .hero-section h1 {
-  font-size: 2.6rem;
-  text-shadow: 0 0 20px rgba(45, 252, 220, 0.5);
+  font-family: 'Orbitron', 'Noto Sans TC', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 0 24px var(--dynamic-glow);
+  animation: titlePulse 3s ease-in-out infinite;
 }
-.hero-section p { color: var(--muted); font-size: 1.05rem; margin-top: 12px; }
+@keyframes titlePulse {
+  0%, 100% { text-shadow: 0 0 22px var(--dynamic-glow); }
+  50% { text-shadow: 0 0 40px var(--dynamic-glow), 0 0 60px var(--dynamic-glow); }
+}
+.hero-section p { color: var(--muted); font-size: 1.12rem; margin-top: 14px; }
 
 /* ---------- RWD ---------- */
 @media (max-width: 768px) {

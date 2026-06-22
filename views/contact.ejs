@@ -1,8 +1,9 @@
 <%- include('partials/header') %>
 
+<div class="auth-page">
 <h1 class="page-title">聯絡資訊</h1>
 
-<div class="card" style="max-width: 560px;">
+<div class="card auth-card" style="max-width: 560px;">
   <% if (success) { %>
     <div class="success-msg">訊息已送出，我們會盡快與您聯繫！</div>
   <% } %>
@@ -35,10 +36,11 @@
   </form>
 </div>
 
-<div class="card" style="max-width: 560px;">
+<div class="card auth-card" style="max-width: 560px;">
   <h3>其他聯絡方式</h3>
   <p style="color: var(--muted);">Email: example@example.com</p>
   <p style="color: var(--muted);">這裡之後可以放上你真實的聯絡資訊。</p>
+</div>
 </div>
 
 <%- include('partials/footer') %>

@@ -1,8 +1,9 @@
 <%- include('partials/header') %>
 
+<div class="auth-page">
 <h1 class="page-title">註冊</h1>
 
-<div class="card" style="max-width: 420px;">
+<div class="card auth-card" style="max-width: 420px;">
   <% if (errors.length > 0) { %>
     <div class="errors">
       <ul style="margin: 0; padding-left: 18px;">
@@ -30,6 +31,7 @@
     <button type="submit" class="btn">註冊</button>
   </form>
   <p style="color: var(--muted); margin-top: 16px;">已經有帳號了？<a href="/login" style="color: var(--neon-cyan);">前往登入</a></p>
+</div>
 </div>
 
 <%- include('partials/footer') %>
