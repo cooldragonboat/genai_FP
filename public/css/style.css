@@ -45,7 +45,7 @@ a { color: var(--dynamic); }
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #05070b; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--dynamic), #1a9b8a);
+  background: var(--dynamic);
   border-radius: 10px;
 }
 
@@ -213,7 +213,7 @@ h1 { font-size: 2rem; }
 
 a.btn, button.btn {
   display: inline-block;
-  background: linear-gradient(135deg, var(--dynamic), #2dd4ff);
+  background: var(--dynamic);
   color: #0c0826;
   transition: background 0.4s ease, transform 0.15s, box-shadow 0.15s;
   border: none;
@@ -227,7 +227,7 @@ a.btn:hover, button.btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 22px var(--dynamic-glow);
 }
-.btn-danger { background: linear-gradient(135deg, #ff7a7a, var(--danger)); color: #2a0606; }
+.btn-danger { background: var(--danger); color: #2a0606; }
 .btn-secondary { background: rgba(255,255,255,0.1); color: var(--text); }
 .btn-sm { padding: 6px 12px; font-size: 0.85rem; }
 
