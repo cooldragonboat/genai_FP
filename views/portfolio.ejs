@@ -17,7 +17,7 @@
   <% items.forEach(p => { %>
     <div class="card">
       <h3><%= p.title %></h3>
-      <span class="badge badge-user"><%= p.category %></span>
+      <span class="badge badge-dynamic"><%= p.category %></span>
       <p style="color: var(--muted); margin-top: 10px;"><%= p.description %></p>
       <% if (p.link_url) { %><a class="btn btn-sm" href="<%= p.link_url %>" target="_blank">查看連結</a><% } %>
     </div>

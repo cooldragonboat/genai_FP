@@ -16,8 +16,8 @@
 <div class="grid grid-2">
   <% articles.forEach(a => { %>
     <div class="card">
-      <span class="badge badge-user"><%= a.category %></span>
-      <h3><a href="/articles/<%= a.id %>" style="color: var(--neon-cyan); text-decoration: none;"><%= a.title %></a></h3>
+      <span class="badge badge-dynamic"><%= a.category %></span>
+      <h3><a href="/articles/<%= a.id %>" style="color: var(--dynamic); text-decoration: none;"><%= a.title %></a></h3>
       <p style="color: var(--muted);"><%= a.summary %></p>
       <p style="color: var(--muted); font-size: 0.8rem;"><%= a.created_at %></p>
     </div>

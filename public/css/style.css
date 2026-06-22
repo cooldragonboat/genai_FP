@@ -307,6 +307,7 @@ th { color: var(--muted); font-weight: 600; }
   font-size: 0.78rem;
   font-weight: 600;
 }
+.badge-dynamic { background: var(--dynamic-glow); color: var(--dynamic); transition: background 0.4s ease, color 0.4s ease; }
 .badge-admin { background: rgba(255, 122, 48, 0.2); color: var(--neon-orange); }
 .badge-user { background: rgba(45, 252, 220, 0.15); color: var(--neon-cyan); }
 .badge-pending { background: rgba(255, 196, 0, 0.18); color: #ffc400; }
