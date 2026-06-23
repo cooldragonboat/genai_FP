@@ -4,6 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%= title %> | 期末專題</title>
+  <script>
+    (function () {
+      var palette = [
+        '#2dfcdc', '#ff7a30', '#ff5c8a', '#9b6cff',
+        '#ffd23f', '#5c9bff', '#7dff6c', '#ff4d4d'
+      ];
+      var color = palette[Math.floor(Math.random() * palette.length)];
+      var hex = color.replace('#', '');
+      var r = parseInt(hex.substring(0, 2), 16);
+      var g = parseInt(hex.substring(2, 4), 16);
+      var b = parseInt(hex.substring(4, 6), 16);
+      var root = document.documentElement;
+      root.style.setProperty('--dynamic', color);
+      root.style.setProperty('--dynamic-glow', 'rgba(' + r + ', ' + g + ', ' + b + ', 0.55)');
+    })();
+  </script>
   <link rel="stylesheet" href="/css/style.css?v=4" />
 </head>
 <body>
