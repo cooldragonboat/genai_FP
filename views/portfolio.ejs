@@ -3,7 +3,7 @@
 <h1 class="page-title">🎨 作品集</h1>
 
 <%
-  const demoUrls = ['https://smallfire.pythonanywhere.com/', 'https://gilded-centaur-cd46a9.netlify.app/'];
+  const demoUrls = ['https://smallfire.pythonanywhere.com/', 'https://gilded-centaur-cd46a9.netlify.app/', 'https://ncu-research-gateway.netlify.app/'];
   const featured = items.filter(p => demoUrls.includes(p.link_url));
   const showFeatured = (!search && !category && featured.length > 0);
   const gridItems = showFeatured ? items.filter(p => !demoUrls.includes(p.link_url)) : items;
