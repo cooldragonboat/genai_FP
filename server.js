@@ -13,6 +13,7 @@ const adminRoutes = require('./routes/admin');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.set('trust proxy', true); // 部署在 Render 等反向代理後面時，正確取得 https 與網域
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -31,6 +32,14 @@ app.use(
 );
 
 app.use(attachUser);
+
+// 供模板做分享預覽（Open Graph）用的網站網址
+app.use((req, res, next) => {
+  const base = process.env.SITE_URL || `${req.protocol}://${req.get('host')}`;
+  res.locals.siteUrl = base;
+  res.locals.currentUrl = base + req.originalUrl;
+  next();
+});
 
 app.use('/', authRoutes);
 app.use('/', pageRoutes);

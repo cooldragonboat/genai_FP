@@ -4,15 +4,19 @@ const db = require('./db');
 function seed() {
   const userCount = db.prepare('SELECT COUNT(*) AS c FROM users').get().c;
   if (userCount === 0) {
-    const adminHash = bcrypt.hashSync('admin1234', 10);
-    const userHash = bcrypt.hashSync('user1234', 10);
+    // 管理員帳密可用環境變數覆蓋（部署時請在平台設定 ADMIN_PASSWORD）
+    const adminUser = process.env.ADMIN_USERNAME || 'admin';
+    const adminEmail = process.env.ADMIN_EMAIL || 'admin@example.com';
+    const adminPass = process.env.ADMIN_PASSWORD || 'admin1234';
+    const adminHash = bcrypt.hashSync(adminPass, 10);
     db.prepare(
       'INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)'
-    ).run('admin', 'admin@example.com', adminHash, 'admin');
-    db.prepare(
-      'INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)'
-    ).run('demo', 'demo@example.com', userHash, 'user');
-    console.log('已建立帳號: admin/admin1234 (管理員), demo/user1234 (一般使用者)');
+    ).run(adminUser, adminEmail, adminHash, 'admin');
+    if (!process.env.ADMIN_PASSWORD) {
+      console.log(`已建立管理員帳號 ${adminUser}（使用預設密碼，正式部署請設定環境變數 ADMIN_PASSWORD）`);
+    } else {
+      console.log(`已建立管理員帳號 ${adminUser}（密碼來自環境變數 ADMIN_PASSWORD）`);
+    }
   }
 
   const articleCount = db.prepare('SELECT COUNT(*) AS c FROM articles').get().c;

@@ -111,6 +111,7 @@ router.get('/portfolio/:id', (req, res) => {
   }
   res.render('portfolio-detail', {
     title: item.title,
+    description: item.description,
     item,
     canEmbed: EMBED_DEMO_URLS.includes(item.link_url),
     reportHtml,

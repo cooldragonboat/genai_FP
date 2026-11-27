@@ -4,6 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%= title %> | 小火的作品集</title>
+  <% var ogDesc = typeof description !== 'undefined' && description ? description : '設計 × 開發 · 作品與創作筆記。採 cyberpunk 霓虹風格打造的個人作品集。'; %>
+  <meta name="description" content="<%= ogDesc %>" />
+  <link rel="icon" type="image/png" href="/images/og.png" />
+  <!-- Open Graph（分享到社群時的預覽卡片） -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="小火的作品集" />
+  <meta property="og:title" content="<%= title %> | 小火的作品集" />
+  <meta property="og:description" content="<%= ogDesc %>" />
+  <meta property="og:url" content="<%= currentUrl %>" />
+  <meta property="og:image" content="<%= siteUrl %>/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="<%= title %> | 小火的作品集" />
+  <meta name="twitter:description" content="<%= ogDesc %>" />
+  <meta name="twitter:image" content="<%= siteUrl %>/images/og.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" />
