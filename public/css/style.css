@@ -139,6 +139,34 @@ body {
 .brand:hover {
   text-shadow: 0 0 8px rgba(45, 252, 220, 0.7), 0 0 20px rgba(255, 43, 214, 0.45);
 }
+/* 頁面標題故障(glitch)效果 */
+.page-title.glitch { position: relative; }
+.page-title.glitch::before,
+.page-title.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.page-title.glitch::before {
+  color: var(--neon-magenta);
+  text-shadow: -1px 0 var(--neon-magenta);
+  clip-path: inset(0 0 56% 0);
+  animation: glitchTop 2.2s infinite steps(2, end) alternate-reverse;
+}
+.page-title.glitch::after {
+  color: var(--neon-cyan);
+  text-shadow: 1px 0 var(--neon-cyan);
+  clip-path: inset(56% 0 0 0);
+  animation: glitchBottom 1.8s infinite steps(2, end) alternate-reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-title.glitch::before, .page-title.glitch::after { animation: none; }
+}
+
 /* 品牌故障(glitch)效果，與首頁標題同風格 */
 .brand.glitch { position: relative; display: inline-block; }
 .brand.glitch::before,
