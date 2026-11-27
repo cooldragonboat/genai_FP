@@ -243,20 +243,17 @@ body {
   border-color: rgba(45, 252, 220, 0.55);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 22px rgba(45, 252, 220, 0.25);
 }
-/* 卡片標題：質感漸層字 */
+/* 卡片標題：白色 */
 .card h3,
 .card h3 a {
   font-size: 1.18rem;
   font-weight: 700;
   text-decoration: none;
-  background: linear-gradient(95deg, #8fe9ff 0%, #b79bff 55%, #ff9ad5 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  transition: filter 0.2s;
+  color: #ffffff;
+  transition: text-shadow 0.2s;
 }
 .card:hover h3,
-.card:hover h3 a { filter: brightness(1.12) drop-shadow(0 0 6px rgba(160, 180, 255, 0.35)); }
+.card:hover h3 a { text-shadow: 0 0 10px rgba(255, 255, 255, 0.35); }
 
 .grid { display: grid; gap: 20px; }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
