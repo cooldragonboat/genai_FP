@@ -13,7 +13,7 @@
 }
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; overflow-x: hidden; max-width: 100%; }
 
 body {
   font-family: 'Segoe UI', 'Noto Sans TC', sans-serif;
@@ -138,6 +138,33 @@ body {
 }
 .brand:hover {
   text-shadow: 0 0 8px rgba(45, 252, 220, 0.7), 0 0 20px rgba(255, 43, 214, 0.45);
+}
+/* 品牌故障(glitch)效果，與首頁標題同風格 */
+.brand.glitch { position: relative; display: inline-block; }
+.brand.glitch::before,
+.brand.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.brand.glitch::before {
+  color: var(--neon-magenta);
+  text-shadow: -1px 0 var(--neon-magenta);
+  clip-path: inset(0 0 56% 0);
+  animation: glitchTop 2.2s infinite steps(2, end) alternate-reverse;
+}
+.brand.glitch::after {
+  color: var(--neon-cyan);
+  text-shadow: 1px 0 var(--neon-cyan);
+  clip-path: inset(56% 0 0 0);
+  animation: glitchBottom 1.8s infinite steps(2, end) alternate-reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand.glitch::before, .brand.glitch::after { animation: none; }
 }
 
 .nav-toggle {
