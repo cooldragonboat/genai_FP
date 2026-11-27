@@ -3,7 +3,7 @@
   --neon-orange: #ff7a30;
   --neon-magenta: #ff2bd6;
   --bg-dark: #07040f;
-  --panel: rgba(16, 12, 30, 0.48);
+  --panel: rgba(16, 12, 30, 0.34);
   --text: #eef2f5;
   --muted: #9aa3bf;
   --accent: #2dfcdc;
@@ -243,6 +243,20 @@ body {
   border-color: rgba(45, 252, 220, 0.55);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 22px rgba(45, 252, 220, 0.25);
 }
+/* 卡片標題：質感漸層字 */
+.card h3,
+.card h3 a {
+  font-size: 1.18rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(95deg, #8fe9ff 0%, #b79bff 55%, #ff9ad5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: filter 0.2s;
+}
+.card:hover h3,
+.card:hover h3 a { filter: brightness(1.12) drop-shadow(0 0 6px rgba(160, 180, 255, 0.35)); }
 
 .grid { display: grid; gap: 20px; }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
