@@ -79,7 +79,13 @@ const EMBED_DEMO_URLS = [
 // 依作品標題補充：成果報告（markdown 檔）與相關連結
 const PORTFOLIO_EXTRA = {
   '電商顧客分群分析（RFM + K-means）': { report: 'data-science.md' },
+  'MahjongCloud 麻將聽牌機率分析': { report: 'mahjong.md' },
+  'MoodTrack 情緒追蹤平台': { report: 'moodtrack.md' },
+  '識詐群島・防詐騙遊戲': { report: 'scamisland.md' },
+  'NCU Research Gateway 研究能量地圖': { report: 'ncu.md' },
+  'JavaFX 蛋糕疊疊樂': { report: 'javafx.md' },
   'LLM-Planner 具身代理任務規劃': {
+    report: 'llm-planner.md',
     links: [
       { label: '參考論文 (arXiv)', url: 'https://arxiv.org/abs/2212.04088' },
       { label: '專案網站', url: 'https://dki-lab.github.io/LLM-Planner/' },
