@@ -19,9 +19,9 @@ function seed() {
   if (articleCount === 0) {
     const admin = db.prepare("SELECT id FROM users WHERE username = 'admin'").get();
     const samples = [
-      ['網站開發心得分享', '技術', '紀錄這次期末專題的開發過程與收穫。', '這裡是文章內容，你可以之後替換成真實文章內容...'],
+      ['我的作品集網站開發歷程', '技術', '分享我如何從零打造這個個人作品集網站。', '這裡是文章內容，你可以之後替換成真實文章內容...'],
       ['如何寫出乾淨的程式碼', '技術', '幾個簡單原則，讓程式碼更好維護。', '這裡是文章內容，你可以之後替換成真實文章內容...'],
-      ['期末專題回顧', '心得', '從零到一完成一個全端網站專案。', '這裡是文章內容，你可以之後替換成真實文章內容...']
+      ['設計一個作品集該注意什麼', '心得', '從版面、配色到內容編排的一些心得。', '這裡是文章內容，你可以之後替換成真實文章內容...']
     ];
     const stmt = db.prepare(
       'INSERT INTO articles (title, category, summary, content, author_id) VALUES (?, ?, ?, ?, ?)'
@@ -34,8 +34,9 @@ function seed() {
     const stmt = db.prepare(
       'INSERT INTO portfolio (title, category, description, image_url, link_url) VALUES (?, ?, ?, ?, ?)'
     );
-    stmt.run('範例作品一', '網頁設計', '這裡放作品說明，之後可替換成真實作品資訊。', '', '');
-    stmt.run('範例作品二', '平面設計', '這裡放作品說明，之後可替換成真實作品資訊。', '', '');
+    stmt.run('個人作品集網站', '網頁設計', '使用 Node.js + Express 打造的響應式個人作品集網站。', '', '');
+    stmt.run('品牌視覺設計', '平面設計', '為個人品牌設計的 Logo 與整體視覺風格。', '', '');
+    stmt.run('活動宣傳海報', '平面設計', '校園活動的主視覺海報設計。', '', '');
   }
 }
 

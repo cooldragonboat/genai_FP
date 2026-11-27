@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/about', (req, res) => {
-  res.render('about', { title: '關於我們' });
+  res.render('about', { title: '關於我' });
 });
 
 router.get('/contact', (req, res) => {
