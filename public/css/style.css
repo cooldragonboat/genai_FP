@@ -394,7 +394,12 @@ select option {
   color: var(--text);
   text-decoration: none;
 }
-.pagination .active { background: var(--neon-cyan); color: #04201c; border-color: var(--neon-cyan); }
+.pagination .active {
+  background: transparent;
+  color: var(--neon-cyan);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(45, 252, 220, 0.35), inset 0 0 10px rgba(45, 252, 220, 0.12);
+}
 
 table {
   width: 100%;
@@ -420,11 +425,9 @@ th { color: var(--muted); font-weight: 600; }
   font-weight: 600;
 }
 .badge-cat {
-  background: rgba(140, 100, 255, 0.12);
-  border: 1px solid rgba(160, 120, 255, 0.5);
-  color: #cbb6ff;
+  background: transparent;
+  border: 1px solid currentColor;
   letter-spacing: 1px;
-  box-shadow: 0 0 10px rgba(140, 100, 255, 0.18);
 }
 .badge-admin { background: rgba(255, 122, 48, 0.2); color: var(--neon-orange); }
 .badge-user { background: rgba(45, 252, 220, 0.15); color: var(--neon-cyan); }

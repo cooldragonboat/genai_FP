@@ -1,0 +1,8 @@
+<%
+  // 依分類名稱自動配一個固定顏色（同一分類永遠同色）
+  var palette = ['#2dfcdc', '#ff2bd6', '#9b7bff', '#ffb347', '#5c9bff', '#7dff6c', '#ff6c8a', '#ffd23f'];
+  var ci = 0;
+  for (var i = 0; i < cat.length; i++) ci = (ci + cat.charCodeAt(i)) % palette.length;
+  var c = palette[ci];
+%>
+<span class="badge badge-cat" style="color: <%= c %>;"><%= cat %></span>
