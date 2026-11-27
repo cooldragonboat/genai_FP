@@ -2,6 +2,37 @@
 
 <h1 class="page-title">🎨 作品集</h1>
 
+<%
+  const demoUrls = ['https://smallfire.pythonanywhere.com/', 'https://gilded-centaur-cd46a9.netlify.app/'];
+  const featured = items.filter(p => demoUrls.includes(p.link_url));
+  const showFeatured = (!search && !category && featured.length > 0);
+  const gridItems = showFeatured ? items.filter(p => !demoUrls.includes(p.link_url)) : items;
+%>
+
+<% if (showFeatured) { %>
+<section class="featured-section">
+  <h2 class="page-title" style="text-align:left;">🎮 精選互動 Demo</h2>
+  <% featured.forEach(f => { %>
+    <div class="card featured-card">
+      <div class="featured-embed">
+        <iframe src="<%= f.link_url %>" loading="lazy"
+          allow="autoplay; fullscreen; clipboard-write; encrypted-media"
+          referrerpolicy="no-referrer"></iframe>
+      </div>
+      <div class="featured-info">
+        <h3><%= f.title %></h3>
+        <%- include('partials/badge', { cat: f.category }) %>
+        <p style="color: var(--muted); margin-top: 10px; flex: 1;"><%= f.description %></p>
+        <div class="featured-actions">
+          <a class="btn" href="<%= f.link_url %>" target="_blank" rel="noopener">在新分頁開啟 ↗</a>
+        </div>
+        <p class="featured-hint">※ 若上方無法顯示，代表該網站不允許內嵌，請點上方按鈕開啟。</p>
+      </div>
+    </div>
+  <% }) %>
+</section>
+<% } %>
+
 <form class="filter-bar" method="GET" action="/portfolio">
   <input type="text" name="q" placeholder="搜尋作品..." value="<%= search %>" />
   <select name="category" onchange="this.form.submit()">
@@ -14,7 +45,7 @@
 </form>
 
 <div class="grid grid-3">
-  <% items.forEach(p => { %>
+  <% gridItems.forEach(p => { %>
     <div class="card portfolio-card">
       <% if (p.link_url) { %>
         <a class="preview" href="<%= p.link_url %>" target="_blank" rel="noopener" title="開啟 <%= p.title %>">
@@ -30,7 +61,7 @@
       <% if (p.link_url) { %><a class="btn btn-sm" href="<%= p.link_url %>" target="_blank">查看連結</a><% } %>
     </div>
   <% }) %>
-  <% if (items.length === 0) { %><p style="color: var(--muted);">尚無符合條件的作品。</p><% } %>
+  <% if (gridItems.length === 0) { %><p style="color: var(--muted);">尚無符合條件的作品。</p><% } %>
 </div>
 
 <%- include('partials/footer') %>
