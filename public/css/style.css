@@ -346,8 +346,9 @@ h2, h3 { font-family: 'Rajdhani', 'Noto Sans TC', sans-serif; letter-spacing: 0.
   margin-bottom: 24px;
   color: #d7e6ee;
   text-shadow: 0 0 7px rgba(45, 252, 220, 0.45);
-  text-align: center;
 }
+/* 僅首頁/登入/註冊的標題置中 */
+.page-title.center { text-align: center; }
 
 a.btn, button.btn {
   display: inline-block;
