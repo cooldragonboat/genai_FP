@@ -18,6 +18,8 @@
           <img loading="lazy" src="https://image.thum.io/get/width/800/crop/500/<%= p.link_url %>" alt="<%= p.title %> 網頁預覽" />
           <span class="preview-live">LIVE</span>
         </a>
+      <% } else if (p.image_url) { %>
+        <div class="preview"><img loading="lazy" src="<%= p.image_url %>" alt="<%= p.title %> 預覽" /></div>
       <% } else { %>
         <div class="preview preview-ph"><span><%= p.category %></span></div>
       <% } %>
