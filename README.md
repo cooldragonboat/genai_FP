@@ -1,6 +1,7 @@
 # 期末專題網站
 
 不需要外部 API，使用 Node.js + Express + EJS + SQLite (better-sqlite3) 自行實作的全端網站範例。
+https://smallfire.onrender.com/
 
 ## 功能
 
