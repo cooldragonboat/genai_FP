@@ -40,7 +40,7 @@ function seed() {
     stmt.run('電商顧客分群分析（RFM + K-means）', '資料科學', '以 UCI Online Retail 約 54 萬筆交易資料計算顧客 RFM 指標，結合五分位規則與 K-means 分群，找出各族群消費特徵（約 28% 顧客貢獻 76% 營收），並與 GMM／Ward 等方法比較。Python。', '', '');
     stmt.run('識詐群島・防詐騙遊戲', '人工智慧', '用遊戲學防詐騙：在島上開寶箱，判斷簡訊／Email／網頁／來電是否為詐騙，內建 AI 防詐助手與對練道場（RAG 檢索＋Microsoft Foundry 模型）。HTML/JS 前端＋Netlify Functions 後端。', '', 'https://gilded-centaur-cd46a9.netlify.app/');
     stmt.run('LLM-Planner 具身代理任務規劃', '畢業專題', '畢業專題：以大型語言模型為具身代理（embodied agent）做少樣本任務規劃，基於並延伸 LLM-Planner 研究，於 ALFRED 環境進行高階計畫生成與端到端代理實驗。', '', '');
-    stmt.run('NCU Research Gateway 研究能量地圖', '人工智慧', '校務競賽作品：將中央大學教授的專長、論文、計畫與實驗室整理成互動式「研究能量地圖」，讓人用自然語言就能找到對的教授與研究。React + Vite 前端、Python 爬蟲資料管線、Gemma 產生研究總結。', '', '');
+    stmt.run('NCU Research Gateway 研究能量地圖', '人工智慧', '校務競賽作品：將中央大學教授的專長、論文、計畫與實驗室整理成互動式「研究能量地圖」，讓人用自然語言就能找到對的教授與研究。React + Vite 前端、Python 爬蟲資料管線、Gemma 產生研究總結。', '', 'https://ncu-research-gateway.netlify.app/');
     stmt.run('JavaFX 蛋糕疊疊樂', '程式作品', '計算機實習期末專題：使用 Java 與 JavaFX 開發的迷你遊戲，點擊讓蛋糕掉落堆疊、沒對準就被切掉，並可選擇難度，採 MVC 架構。', '', '');
   }
 }
