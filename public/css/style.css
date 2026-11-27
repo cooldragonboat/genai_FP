@@ -272,13 +272,11 @@ h2, h3 { font-family: 'Rajdhani', 'Noto Sans TC', sans-serif; letter-spacing: 0.
 
 a.btn, button.btn {
   display: inline-block;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background:
-    linear-gradient(rgba(16, 12, 30, 0.25), rgba(16, 12, 30, 0.25)) padding-box,
-    linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta)) border-box;
-  color: #e9f6ff;
-  padding: 11px 22px;
+  background: rgba(16, 12, 30, 0.25);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 6px;
+  color: var(--neon-cyan);
+  padding: 10px 20px;
   font-family: 'Rajdhani', 'Noto Sans TC', sans-serif;
   font-weight: 700;
   font-size: 0.98rem;
@@ -286,28 +284,26 @@ a.btn, button.btn {
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 0 10px rgba(45, 252, 220, 0.2), inset 0 0 12px rgba(45, 252, 220, 0.05);
+  box-shadow: 0 0 10px rgba(45, 252, 220, 0.3), inset 0 0 10px rgba(45, 252, 220, 0.1);
   transition: transform 0.15s, box-shadow 0.2s, color 0.2s;
 }
 a.btn:hover, button.btn:hover {
   transform: translateY(-2px);
-  color: #fff;
-  box-shadow: 0 0 18px rgba(45, 252, 220, 0.5), 0 0 30px rgba(255, 43, 214, 0.35), inset 0 0 16px rgba(45, 252, 220, 0.12);
+  color: #eafdff;
+  box-shadow: 0 0 18px rgba(45, 252, 220, 0.55), inset 0 0 16px rgba(45, 252, 220, 0.18);
 }
 .btn-danger {
-  background:
-    linear-gradient(rgba(16, 12, 30, 0.25), rgba(16, 12, 30, 0.25)) padding-box,
-    linear-gradient(135deg, #ff8a8a, var(--danger)) border-box;
-  color: #ffd9d9;
+  border-color: var(--danger);
+  color: #ff9a9a;
+  box-shadow: 0 0 10px rgba(255, 92, 92, 0.3), inset 0 0 10px rgba(255, 92, 92, 0.1);
 }
-.btn-danger:hover { box-shadow: 0 0 18px rgba(255, 92, 92, 0.5); }
+.btn-danger:hover { box-shadow: 0 0 18px rgba(255, 92, 92, 0.55), inset 0 0 16px rgba(255, 92, 92, 0.18); }
 .btn-secondary {
-  background: rgba(16, 12, 30, 0.25);
-  color: var(--neon-cyan);
-  border: 1px solid rgba(45, 252, 220, 0.6);
-  box-shadow: 0 0 10px rgba(45, 252, 220, 0.18), inset 0 0 12px rgba(45, 252, 220, 0.06);
+  border-color: rgba(160, 120, 255, 0.8);
+  color: #cbb6ff;
+  box-shadow: 0 0 10px rgba(140, 100, 255, 0.28), inset 0 0 10px rgba(140, 100, 255, 0.1);
 }
-.btn-secondary:hover { box-shadow: 0 0 18px rgba(45, 252, 220, 0.45), inset 0 0 16px rgba(45, 252, 220, 0.14); }
+.btn-secondary:hover { box-shadow: 0 0 18px rgba(140, 100, 255, 0.5), inset 0 0 16px rgba(140, 100, 255, 0.18); }
 .btn-sm { padding: 6px 12px; font-size: 0.85rem; }
 
 form .field { margin-bottom: 16px; }
