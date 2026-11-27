@@ -12,7 +12,15 @@
 <h2 class="page-title">⭐ 精選作品</h2>
 <div class="grid grid-3">
   <% portfolioPreview.forEach(p => { %>
-    <div class="card">
+    <div class="card portfolio-card">
+      <% if (p.link_url) { %>
+        <a class="preview" href="<%= p.link_url %>" target="_blank" rel="noopener" title="開啟 <%= p.title %>">
+          <img loading="lazy" src="https://image.thum.io/get/width/800/crop/500/<%= p.link_url %>" alt="<%= p.title %> 網頁預覽" />
+          <span class="preview-live">LIVE</span>
+        </a>
+      <% } else { %>
+        <div class="preview preview-ph"><span><%= p.category %></span></div>
+      <% } %>
       <h3><%= p.title %></h3>
       <p style="color: var(--muted);"><%= p.description %></p>
     </div>
