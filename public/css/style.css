@@ -419,14 +419,21 @@ th { color: var(--muted); font-weight: 600; }
 
 .admin-tabs { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
 .admin-tabs a {
-  color: var(--text);
+  color: var(--muted);
   text-decoration: none;
   padding: 8px 16px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  background: rgba(16, 12, 30, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 0.9rem;
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
-.admin-tabs a:hover, .admin-tabs a.active { background: var(--neon-cyan); color: #04201c; }
+.admin-tabs a:hover, .admin-tabs a.active {
+  background: rgba(16, 12, 30, 0.25);
+  color: var(--neon-cyan);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(45, 252, 220, 0.3), inset 0 0 10px rgba(45, 252, 220, 0.1);
+}
 
 .hero-section {
   text-align: center;
