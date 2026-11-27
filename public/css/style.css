@@ -155,13 +155,15 @@ body {
   color: var(--neon-magenta);
   text-shadow: -1px 0 var(--neon-magenta);
   clip-path: inset(0 0 56% 0);
-  animation: glitchTop 2.2s infinite steps(2, end) alternate-reverse;
+  transform: translate(-2px, -1px);
+  animation: glitchFlicker 4s infinite steps(1, end);
 }
 .page-title.glitch::after {
   color: var(--neon-cyan);
   text-shadow: 1px 0 var(--neon-cyan);
   clip-path: inset(56% 0 0 0);
-  animation: glitchBottom 1.8s infinite steps(2, end) alternate-reverse;
+  transform: translate(2px, 1px);
+  animation: glitchFlicker 5.5s infinite steps(1, end);
 }
 @media (prefers-reduced-motion: reduce) {
   .page-title.glitch::before, .page-title.glitch::after { animation: none; }
@@ -183,13 +185,15 @@ body {
   color: var(--neon-magenta);
   text-shadow: -1px 0 var(--neon-magenta);
   clip-path: inset(0 0 56% 0);
-  animation: glitchTop 2.2s infinite steps(2, end) alternate-reverse;
+  transform: translate(-2px, -1px);
+  animation: glitchFlicker 4s infinite steps(1, end);
 }
 .brand.glitch::after {
   color: var(--neon-cyan);
   text-shadow: 1px 0 var(--neon-cyan);
   clip-path: inset(56% 0 0 0);
-  animation: glitchBottom 1.8s infinite steps(2, end) alternate-reverse;
+  transform: translate(2px, 1px);
+  animation: glitchFlicker 5.5s infinite steps(1, end);
 }
 @media (prefers-reduced-motion: reduce) {
   .brand.glitch::before, .brand.glitch::after { animation: none; }
@@ -370,15 +374,12 @@ a.btn, button.btn {
   97% { box-shadow: 0 0 4px rgba(45, 252, 220, 0.15), inset 0 0 6px rgba(45, 252, 220, 0.05); }
   98% { box-shadow: 0 0 16px rgba(45, 252, 220, 0.6), inset 0 0 14px rgba(45, 252, 220, 0.2); }
 }
-/* 滑過時 RGB 錯位抖動 */
+/* 滑過時：上浮 + 固定 RGB 錯位疊色光（不抖動） */
 a.btn:hover, button.btn:hover {
   color: #eafdff;
-  animation: btnGlitch 0.35s steps(2, end) infinite;
-}
-@keyframes btnGlitch {
-  0%, 100% { transform: translate(0, -2px); box-shadow: 0 0 16px rgba(45, 252, 220, 0.5), -3px 0 10px rgba(255, 43, 214, 0.5), 3px 0 10px rgba(45, 252, 220, 0.5), inset 0 0 16px rgba(45, 252, 220, 0.18); }
-  33% { transform: translate(-2px, -3px); box-shadow: 0 0 16px rgba(45, 252, 220, 0.5), 3px 0 10px rgba(255, 43, 214, 0.5), -3px 0 10px rgba(45, 252, 220, 0.5), inset 0 0 16px rgba(45, 252, 220, 0.18); }
-  66% { transform: translate(2px, -1px); box-shadow: 0 0 16px rgba(45, 252, 220, 0.5), -2px 0 10px rgba(255, 43, 214, 0.5), 2px 0 10px rgba(45, 252, 220, 0.5), inset 0 0 16px rgba(45, 252, 220, 0.18); }
+  transform: translateY(-2px);
+  animation: none;
+  box-shadow: 0 0 16px rgba(45, 252, 220, 0.5), -3px 0 10px rgba(255, 43, 214, 0.5), 3px 0 10px rgba(45, 252, 220, 0.5), inset 0 0 16px rgba(45, 252, 220, 0.18);
 }
 @media (prefers-reduced-motion: reduce) {
   a.btn, button.btn { animation: none; }
@@ -568,27 +569,23 @@ th { color: var(--muted); font-weight: 600; }
   color: var(--neon-magenta);
   text-shadow: -2px 0 var(--neon-magenta);
   clip-path: inset(0 0 56% 0);
-  animation: glitchTop 2.2s infinite steps(2, end) alternate-reverse;
+  transform: translate(-2px, -1px);
+  animation: glitchFlicker 4s infinite steps(1, end);
 }
 .hero-section h1.glitch::after {
   color: var(--neon-cyan);
   text-shadow: 2px 0 var(--neon-cyan);
   clip-path: inset(56% 0 0 0);
-  animation: glitchBottom 1.8s infinite steps(2, end) alternate-reverse;
+  transform: translate(2px, 1px);
+  animation: glitchFlicker 5.5s infinite steps(1, end);
 }
-@keyframes glitchTop {
-  0%, 100% { transform: translate(0, 0); }
-  20% { transform: translate(-3px, -1px); }
-  40% { transform: translate(-1px, 1px); }
-  60% { transform: translate(-4px, 0); }
-  80% { transform: translate(2px, -1px); }
-}
-@keyframes glitchBottom {
-  0%, 100% { transform: translate(0, 0); }
-  20% { transform: translate(3px, 1px); }
-  40% { transform: translate(1px, -1px); }
-  60% { transform: translate(4px, 0); }
-  80% { transform: translate(-2px, 1px); }
+/* 只閃爍、不位移（保持固定錯位疊色） */
+@keyframes glitchFlicker {
+  0%, 90%, 100% { opacity: 0.85; }
+  91% { opacity: 0.25; }
+  92% { opacity: 1; }
+  93% { opacity: 0.5; }
+  94% { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-section h1.glitch::before,
