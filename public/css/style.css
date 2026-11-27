@@ -3,7 +3,7 @@
   --neon-orange: #ff7a30;
   --neon-magenta: #ff2bd6;
   --bg-dark: #07040f;
-  --panel: rgba(16, 12, 30, 0.72);
+  --panel: rgba(16, 12, 30, 0.48);
   --text: #eef2f5;
   --muted: #9aa3bf;
   --accent: #2dfcdc;
@@ -72,6 +72,35 @@ body {
   to { background-position: 0 54px; }
 }
 
+/* 遠方賽博城市剪影 */
+.bg-city {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 42vh;
+  height: 170px;
+  filter: drop-shadow(0 0 6px rgba(45, 252, 220, 0.25));
+}
+.bg-city svg { width: 100%; height: 100%; display: block; }
+
+/* 滑鼠跟隨霓虹光暈 */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  margin: -150px 0 0 -150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45, 252, 220, 0.22) 0%, rgba(255, 43, 214, 0.12) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: screen;
+  transform: translate(-400px, -400px);
+  transition: transform 0.08s ease-out;
+  will-change: transform;
+}
+
 /* 掃描線 + 暗化，確保文字清楚 */
 .bg-overlay {
   position: absolute;
@@ -123,13 +152,13 @@ body {
   font-size: 1.4rem;
   font-weight: 900;
   letter-spacing: 2px;
-  color: #fff;
+  color: #d7e6ee;
   text-decoration: none;
-  text-shadow: 0 0 6px var(--neon-cyan), 0 0 16px var(--neon-cyan), 0 0 32px var(--neon-magenta);
+  text-shadow: 0 0 6px rgba(45, 252, 220, 0.5), 0 0 14px rgba(255, 43, 214, 0.35);
   transition: text-shadow 0.3s;
 }
 .brand:hover {
-  text-shadow: 0 0 8px var(--neon-cyan), 0 0 22px var(--neon-cyan), 0 0 44px var(--neon-magenta);
+  text-shadow: 0 0 8px rgba(45, 252, 220, 0.7), 0 0 20px rgba(255, 43, 214, 0.45);
 }
 
 .nav-toggle {
@@ -228,8 +257,8 @@ h2, h3 { font-family: 'Rajdhani', 'Noto Sans TC', sans-serif; letter-spacing: 0.
   font-size: 1.7rem;
   letter-spacing: 1.5px;
   margin-bottom: 24px;
-  color: #fff;
-  text-shadow: 0 0 8px var(--neon-cyan), 0 0 22px rgba(45, 252, 220, 0.5);
+  color: #d7e6ee;
+  text-shadow: 0 0 7px rgba(45, 252, 220, 0.45);
 }
 
 a.btn, button.btn {
@@ -380,13 +409,13 @@ th { color: var(--muted); font-weight: 600; }
   font-weight: 900;
   font-size: 2.8rem;
   letter-spacing: 2px;
-  color: #fff;
-  text-shadow: 0 0 10px var(--neon-cyan), 0 0 28px var(--neon-cyan), 0 0 56px var(--neon-magenta);
-  animation: heroGlow 3s ease-in-out infinite alternate;
+  color: #dbe9f2;
+  text-shadow: 0 0 8px rgba(45, 252, 220, 0.5), 0 0 24px rgba(255, 43, 214, 0.3);
+  animation: heroGlow 3.5s ease-in-out infinite alternate;
 }
 @keyframes heroGlow {
-  from { text-shadow: 0 0 10px var(--neon-cyan), 0 0 24px var(--neon-cyan), 0 0 44px var(--neon-magenta); }
-  to { text-shadow: 0 0 14px var(--neon-cyan), 0 0 34px var(--neon-cyan), 0 0 70px var(--neon-magenta); }
+  from { text-shadow: 0 0 7px rgba(45, 252, 220, 0.4), 0 0 18px rgba(255, 43, 214, 0.22); }
+  to { text-shadow: 0 0 11px rgba(45, 252, 220, 0.6), 0 0 30px rgba(255, 43, 214, 0.35); }
 }
 .hero-section p {
   color: #c7d0ea;
@@ -394,6 +423,49 @@ th { color: var(--muted); font-weight: 600; }
   font-size: 1.15rem;
   letter-spacing: 0.5px;
   margin-top: 14px;
+}
+
+/* 故障 (glitch) 標題效果 */
+.hero-section h1.glitch { position: relative; display: inline-block; }
+.hero-section h1.glitch::before,
+.hero-section h1.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-section h1.glitch::before {
+  color: var(--neon-magenta);
+  text-shadow: -2px 0 var(--neon-magenta);
+  clip-path: inset(0 0 56% 0);
+  animation: glitchTop 2.2s infinite steps(2, end) alternate-reverse;
+}
+.hero-section h1.glitch::after {
+  color: var(--neon-cyan);
+  text-shadow: 2px 0 var(--neon-cyan);
+  clip-path: inset(56% 0 0 0);
+  animation: glitchBottom 1.8s infinite steps(2, end) alternate-reverse;
+}
+@keyframes glitchTop {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-3px, -1px); }
+  40% { transform: translate(-1px, 1px); }
+  60% { transform: translate(-4px, 0); }
+  80% { transform: translate(2px, -1px); }
+}
+@keyframes glitchBottom {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(3px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(4px, 0); }
+  80% { transform: translate(-2px, 1px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-section h1.glitch::before,
+  .hero-section h1.glitch::after { animation: none; }
 }
 
 /* ---------- RWD ---------- */
