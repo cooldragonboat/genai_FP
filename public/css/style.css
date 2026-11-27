@@ -312,6 +312,56 @@ body {
 .card:hover h3,
 .card:hover h3 a { text-shadow: 0 0 10px rgba(255, 255, 255, 0.35); }
 
+/* 作品卡網頁預覽 */
+.portfolio-card { overflow: hidden; }
+.portfolio-card .preview {
+  position: relative;
+  display: block;
+  margin: -24px -24px 16px;
+  height: 180px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(45, 252, 220, 0.3);
+  background: linear-gradient(135deg, #140c24, #0a0a20);
+}
+.portfolio-card .preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.portfolio-card:hover .preview img { transform: scale(1.06); }
+.preview-live {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: #06120f;
+  background: var(--neon-cyan);
+  padding: 2px 8px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(45, 252, 220, 0.6);
+}
+.preview-ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    repeating-linear-gradient(135deg, rgba(45,252,220,0.06) 0 10px, transparent 10px 20px),
+    linear-gradient(135deg, #1a1030, #0a0a20);
+}
+.preview-ph span {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+  color: rgba(203, 182, 255, 0.7);
+  font-size: 0.95rem;
+  text-shadow: 0 0 12px rgba(140, 100, 255, 0.4);
+}
+
 /* 推薦音樂區塊 */
 .music-card { padding: 16px; }
 .spotify-embed {
