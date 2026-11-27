@@ -78,6 +78,7 @@ const EMBED_DEMO_URLS = [
 
 // 依作品標題補充：成果報告（markdown 檔）與相關連結
 const PORTFOLIO_EXTRA = {
+  '個人作品集網站': { report: 'portfolio-site.md' },
   '電商顧客分群分析（RFM + K-means）': { report: 'data-science.md' },
   'MahjongCloud 麻將聽牌機率分析': { report: 'mahjong.md' },
   'MoodTrack 情緒追蹤平台': { report: 'moodtrack.md' },
