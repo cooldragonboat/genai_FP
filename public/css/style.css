@@ -48,7 +48,7 @@ body {
   z-index: 9999;
   mix-blend-mode: screen;
   transform: translate(-400px, -400px);
-  transition: transform 0.04s linear;
+  transition: transform 0.04s linear, opacity 0.2s ease;
   will-change: transform;
 }
 .cursor-glow::before,
