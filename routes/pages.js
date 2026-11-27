@@ -66,6 +66,51 @@ router.get('/portfolio', (req, res) => {
   res.render('portfolio', { title: '作品集', items, categories, category, search });
 });
 
+const fs = require('fs');
+const path = require('path');
+const { marked } = require('marked');
+
+const EMBED_DEMO_URLS = [
+  'https://gilded-centaur-cd46a9.netlify.app/',
+  'https://ncu-research-gateway.netlify.app/',
+  'https://smallfire.pythonanywhere.com/',
+];
+
+// 依作品標題補充：成果報告（markdown 檔）與相關連結
+const PORTFOLIO_EXTRA = {
+  '電商顧客分群分析（RFM + K-means）': { report: 'data-science.md' },
+  'LLM-Planner 具身代理任務規劃': {
+    links: [
+      { label: '參考論文 (arXiv)', url: 'https://arxiv.org/abs/2212.04088' },
+      { label: '專案網站', url: 'https://dki-lab.github.io/LLM-Planner/' },
+    ],
+  },
+};
+
+router.get('/portfolio/:id', (req, res) => {
+  const item = db.prepare('SELECT * FROM portfolio WHERE id = ?').get(req.params.id);
+  if (!item) {
+    return res.status(404).render('error', { title: '找不到作品', message: '此作品不存在或已被刪除。' });
+  }
+  const extra = PORTFOLIO_EXTRA[item.title] || {};
+  let reportHtml = null;
+  if (extra.report) {
+    try {
+      const md = fs.readFileSync(path.join(__dirname, '..', 'data', 'reports', extra.report), 'utf8');
+      reportHtml = marked(md);
+    } catch (e) {
+      reportHtml = null;
+    }
+  }
+  res.render('portfolio-detail', {
+    title: item.title,
+    item,
+    canEmbed: EMBED_DEMO_URLS.includes(item.link_url),
+    reportHtml,
+    links: extra.links || [],
+  });
+});
+
 router.get('/articles', (req, res) => {
   const { page, limit, offset } = getPagination(req.query, 6);
   const category = req.query.category || '';

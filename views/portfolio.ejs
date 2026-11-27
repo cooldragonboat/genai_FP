@@ -23,8 +23,9 @@
         <h3><%= f.title %></h3>
         <%- include('partials/badge', { cat: f.category }) %>
         <p style="color: var(--muted); margin-top: 10px; flex: 1;"><%= f.description %></p>
-        <div class="featured-actions">
+        <div class="featured-actions card-actions">
           <a class="btn" href="<%= f.link_url %>" target="_blank" rel="noopener">在新分頁開啟 ↗</a>
+          <a class="btn btn-secondary" href="/portfolio/<%= f.id %>">查看詳細</a>
         </div>
         <p class="featured-hint">※ 若上方無法顯示，代表該網站不允許內嵌，請點上方按鈕開啟。</p>
       </div>
@@ -47,20 +48,23 @@
 <div class="grid grid-3">
   <% gridItems.forEach(p => { %>
     <div class="card portfolio-card">
-      <% if (p.link_url) { %>
-        <a class="preview" href="<%= p.link_url %>" target="_blank" rel="noopener" title="開啟 <%= p.title %>">
+      <a class="preview" href="/portfolio/<%= p.id %>" title="查看 <%= p.title %>">
+        <% if (p.link_url) { %>
           <img loading="lazy" src="https://image.thum.io/get/width/800/crop/500/<%= p.link_url %>" alt="<%= p.title %> 網頁預覽" />
           <span class="preview-live">LIVE</span>
-        </a>
-      <% } else if (p.image_url) { %>
-        <div class="preview"><img loading="lazy" src="<%= p.image_url %>" alt="<%= p.title %> 預覽" /></div>
-      <% } else { %>
-        <div class="preview preview-ph"><span><%= p.category %></span></div>
-      <% } %>
-      <h3><%= p.title %></h3>
+        <% } else if (p.image_url) { %>
+          <img loading="lazy" src="<%= p.image_url %>" alt="<%= p.title %> 預覽" />
+        <% } else { %>
+          <span class="preview-ph-inner"><%= p.category %></span>
+        <% } %>
+      </a>
+      <h3><a href="/portfolio/<%= p.id %>" style="text-decoration: none;"><%= p.title %></a></h3>
       <%- include('partials/badge', { cat: p.category }) %>
       <p style="color: var(--muted); margin-top: 10px;"><%= p.description %></p>
-      <% if (p.link_url) { %><a class="btn btn-sm" href="<%= p.link_url %>" target="_blank">查看連結</a><% } %>
+      <div class="card-actions">
+        <a class="btn btn-sm" href="/portfolio/<%= p.id %>">查看詳細</a>
+        <% if (p.link_url) { %><a class="btn btn-sm btn-secondary" href="<%= p.link_url %>" target="_blank" rel="noopener">開啟 Demo ↗</a><% } %>
+      </div>
     </div>
   <% }) %>
   <% if (gridItems.length === 0) { %><p style="color: var(--muted);">尚無符合條件的作品。</p><% } %>

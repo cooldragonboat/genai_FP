@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+
+<p style="margin-bottom: 16px;"><a href="/portfolio" style="color: var(--muted); text-decoration: none;">← 返回作品集</a></p>
+
+<h1 class="page-title" style="text-align: left;"><%= item.title %></h1>
+<%- include('partials/badge', { cat: item.category }) %>
+
+<div class="detail-media">
+  <% if (canEmbed) { %>
+    <iframe class="detail-embed" src="<%= item.link_url %>" loading="lazy"
+      allow="autoplay; fullscreen; clipboard-write; encrypted-media" referrerpolicy="no-referrer"></iframe>
+  <% } else if (item.image_url) { %>
+    <img class="detail-img" src="<%= item.image_url %>" alt="<%= item.title %> 預覽" />
+  <% } else if (item.link_url) { %>
+    <a href="<%= item.link_url %>" target="_blank" rel="noopener">
+      <img class="detail-img" loading="lazy" src="https://image.thum.io/get/width/1200/crop/700/<%= item.link_url %>" alt="<%= item.title %> 網頁預覽" />
+    </a>
+  <% } else { %>
+    <div class="preview preview-ph" style="height: 280px;"><span><%= item.category %></span></div>
+  <% } %>
+</div>
+
+<div class="detail-actions">
+  <% if (item.link_url) { %>
+    <a class="btn" href="<%= item.link_url %>" target="_blank" rel="noopener">開啟 Demo ↗</a>
+  <% } %>
+  <% links.forEach(function(l) { %>
+    <a class="btn btn-secondary" href="<%= l.url %>" target="_blank" rel="noopener"><%= l.label %> ↗</a>
+  <% }) %>
+</div>
+
+<div class="card detail-about">
+  <h2>關於這個作品</h2>
+  <p style="line-height: 1.9; white-space: pre-line; color: var(--text);"><%= item.description %></p>
+</div>
+
+<% if (reportHtml) { %>
+  <h2 class="page-title" style="text-align: left;">📄 成果報告</h2>
+  <div class="card report-body">
+    <%- reportHtml %>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>
