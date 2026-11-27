@@ -198,15 +198,15 @@ body {
 .card {
   position: relative;
   background: var(--panel);
-  border: 1px solid rgba(45, 252, 220, 0.22);
-  border-radius: 12px;
+  border: 1px solid rgba(45, 252, 220, 0.28);
+  border-radius: 4px;
   padding: 24px;
   margin-bottom: 20px;
   backdrop-filter: blur(6px);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45), inset 0 0 20px rgba(45, 252, 220, 0.04);
-  overflow: hidden;
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
+/* 頂部霓虹光條 */
 .card::before {
   content: "";
   position: absolute;
@@ -217,11 +217,30 @@ body {
   background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-magenta), transparent);
   opacity: 0.8;
 }
+/* 四角霓虹角標 */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--neon-cyan), var(--neon-cyan)) left top / 16px 2px no-repeat,
+    linear-gradient(var(--neon-cyan), var(--neon-cyan)) left top / 2px 16px no-repeat,
+    linear-gradient(var(--neon-cyan), var(--neon-cyan)) right top / 16px 2px no-repeat,
+    linear-gradient(var(--neon-cyan), var(--neon-cyan)) right top / 2px 16px no-repeat,
+    linear-gradient(var(--neon-magenta), var(--neon-magenta)) left bottom / 16px 2px no-repeat,
+    linear-gradient(var(--neon-magenta), var(--neon-magenta)) left bottom / 2px 16px no-repeat,
+    linear-gradient(var(--neon-magenta), var(--neon-magenta)) right bottom / 16px 2px no-repeat,
+    linear-gradient(var(--neon-magenta), var(--neon-magenta)) right bottom / 2px 16px no-repeat;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
 .card:hover {
   transform: translateY(-4px);
   border-color: rgba(45, 252, 220, 0.55);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 22px rgba(45, 252, 220, 0.25);
 }
+.card:hover::after { opacity: 1; }
 /* 卡片標題：白色 */
 .card h3,
 .card h3 a {
@@ -296,11 +315,11 @@ label { display: block; margin-bottom: 6px; color: var(--muted); font-size: 0.9r
 input, textarea, select {
   width: 100%;
   padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(45, 252, 220, 0.35);
+  background: rgba(16, 12, 30, 0.25);
   color: var(--text);
   font-size: 0.95rem;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
 }
 input:focus, textarea:focus, select:focus {
   outline: none;
