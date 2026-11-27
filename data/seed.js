@@ -35,6 +35,7 @@ function seed() {
       'INSERT INTO portfolio (title, category, description, image_url, link_url) VALUES (?, ?, ?, ?, ?)'
     );
     stmt.run('個人作品集網站', '網頁設計', '使用 Node.js + Express + EJS + SQLite 打造的個人作品集網站，具備會員系統、文章與後台管理，採 cyberpunk 霓虹視覺風格，並部署於 Render。', '', 'https://smallfire.onrender.com');
+    stmt.run('MoodTrack 情緒追蹤平台', '網頁開發', '以 Flask 開發的個人情緒與壓力紀錄分析平台：每日記錄心情、睡眠與運動，並用心情日曆與多種圖表視覺化生活模式。含會員系統、資料隔離、CSRF 保護與 68 項自動化測試，已部署上線。', '', 'https://smallfire.pythonanywhere.com/');
   }
 }
 
