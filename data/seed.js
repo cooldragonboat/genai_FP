@@ -34,9 +34,7 @@ function seed() {
     const stmt = db.prepare(
       'INSERT INTO portfolio (title, category, description, image_url, link_url) VALUES (?, ?, ?, ?, ?)'
     );
-    stmt.run('個人作品集網站', '網頁設計', '使用 Node.js + Express 打造的響應式個人作品集網站。', '', '');
-    stmt.run('品牌視覺設計', '平面設計', '為個人品牌設計的 Logo 與整體視覺風格。', '', '');
-    stmt.run('活動宣傳海報', '平面設計', '校園活動的主視覺海報設計。', '', '');
+    stmt.run('個人作品集網站', '網頁設計', '使用 Node.js + Express + EJS + SQLite 打造的個人作品集網站，具備會員系統、文章與後台管理，採 cyberpunk 霓虹視覺風格，並部署於 Render。', '', 'https://smallfire.onrender.com');
   }
 }
 
